@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <title>pc端和移动端事件的差异01</title>
+        <style>
+            #div1 {
+                width:200px;
+                height:200px;
+                background:red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1">
+
+        </div>
+        <script>
+            var oDiv = document.getElementById("div1");
+            // oDiv.ontouchStart = function () {
+            //     alert(1);
+            // }
+            //注意：在移动端开发的时候，浏览器的模拟器时好时坏，一般不用on的方式绑定事件函数，要用addEventListener()事件绑定的方式
+
+            //手指抬起事件-app
+            oDiv.addEventListener('touchend', end );
+            function end() {
+                console.log('抬起');
+            }
+
+            //鼠标抬起事件-pc
+            oDiv.addEventListener('mouseup', up );
+            function up() {
+                console.log('鼠标抬起');
+            }
+
+
+            /* pc上的事件比移动端的事件略慢
+               大概300ms左右
+            */
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <title>移动端事件3_ontouchend/touchend手指抬起事件</title>
+        <style>
+            #div1 {
+                width:200px;
+                height:200px;
+                background:red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1">
+
+        </div>
+        <script>
+            var oDiv = document.getElementById("div1");
+            // oDiv.ontouchStart = function () {
+            //     alert(1);
+            // }
+            //注意：在移动端开发的时候，浏览器的模拟器时好时坏，一般不用on的方式绑定事件函数，要用addEventListener()事件绑定的方式
+
+
+            //手指按下事件
+            oDiv.addEventListener('touchstart',start);
+            function start() {
+                console.log("按下");
+            }
+
+            //手指按下移动事件
+            oDiv.addEventListener('touchmove',move);
+            function move() {
+                console.log("移动");
+            }
+
+            //手指抬起事件
+            oDiv.addEventListener('touchend', end );
+            function end() {
+                console.log('抬起');
+            }
+        </script>
+    </body>
+</html>

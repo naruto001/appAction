@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <title>移动端阻止PC事件的优点</title>
+        <style>
+            #div1 {
+                width:200px;
+                height:200px;
+                background:red;
+                position:absolute;
+                left:0;
+                top:0;
+                opacity:0.5;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="http://www.baidu.com/" id="link">click me!</a>
+        <div id="div1"></div>
+        <script>
+            
+
+            var oDiv = document.getElementById("div1");
+            var oLink = document.getElementById("link");
+            
+            //手指抬起事件-app
+            oDiv.addEventListener('touchend', end );
+            function end() {
+                this.style.display = "none";
+            };
+
+            // oLink.addEventListener('touchstart', function () {
+            //     window.location.href = 'http://www.baidu.com';
+            // } );
+
+            
+
+            /* pc上的事件比移动端的事件略慢
+               大概300ms左右
+            */
+
+            /*
+                移动端的点透：
+                当上层元素发生点击的时候，下层元素也有点击（焦点）特性，
+                在300ms之后，如果上层元素消失或者隐藏，目标点就会“漂移”到
+                下层元素身上，就会触发点击行为
+            */
+
+            /* 
+                点透的解决方法：
+                1、下层不要使用有点击（焦点）特性的元素，比如外层是div，内层不用a标签；（不建议）
+                2、阻止PC事件
+                   document.addEventListener('touchstart', function (ev) {
+                       ev.preventDefault();
+                   } );
+
+
+            */
+            
+        </script>
+    </body>
+</html>

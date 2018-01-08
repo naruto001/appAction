@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <title>pc端和移动端事件的差异02_移动端的点透</title>
+        <style>
+            #div1 {
+                width:200px;
+                height:200px;
+                background:red;
+                position:absolute;
+                left:0;
+                top:0;
+                opacity:0.5;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="http://www.baidu.com/" id="link">click me!00000</a>
+        <div id="div1"></div>
+        <script>
+            //用pc端手机模拟器不能阻止默认事件，用手机真机测试可以实现
+            document.addEventListener('touchstart', function(ev) {
+                ev.preventDefault();
+            } )
+            
+            var oDiv = document.getElementById("div1");
+            var oLink = document.getElementById("link");
+
+            oDiv.addEventListener('touchend', function () {
+                this.style.display = 'none';
+            } );
+
+            oLink.addEventListener('touchstart', function () {
+                window.location.href = 'http://www.baidu.com/';
+            } );
+
+            
+        </script>
+    </body>
+</html>
